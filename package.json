@@ -1,6 +1,6 @@
 {
   "name": "fortnite-api-pr",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fortnite API power ranking",
   "main": "index.js",
   "scripts": {
