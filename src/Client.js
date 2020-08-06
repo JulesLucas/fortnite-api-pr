@@ -15,13 +15,7 @@ class Client {
             }
         };
     }
-    /** 
-    * Makes the request to the API
-    * @private
-    * @param {string} link URL endpoint of API
-    * @returns {Promise<Object>}
-    * @memberof Client
-    */
+    
     _request(link) {
         return fetch(link, {headers: options.headers}).then(reponse => {
             if (!reponse.ok) return Promise.reject(reponse.statusText);
