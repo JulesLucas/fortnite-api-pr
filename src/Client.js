@@ -18,7 +18,6 @@ class Client {
 
     _request(link) {
         return fetch(link, {headers: options.headers}).then(reponse => {
-            console.log(reponse)
             if (!reponse.ok) return Promise.reject(reponse.statusText);
 
             return reponse.json();
@@ -27,7 +26,8 @@ class Client {
 
     async getPowerRanking(username, platform, region) {
         return this._request(`https://api.fortnitetracker.com/v1/powerrankings/${platform}/${region}/${encodeURI(username)}`).then(reponse => {
-            return reponse
+            if (reponse == 'Not Found') return `No data for this players (${username})`
+            else return reponse
         })
     }
 }
