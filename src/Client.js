@@ -1,5 +1,5 @@
-const fetch = require('node-fetch')
 var options;
+const fetch = require('node-fetch')
 
 class Client {
     constructor(keyAPI) {
@@ -15,26 +15,19 @@ class Client {
             }
         };
     }
-    
+
     _request(link) {
         return fetch(link, {headers: options.headers}).then(reponse => {
+            console.log(reponse)
             if (!reponse.ok) return Promise.reject(reponse.statusText);
 
             return reponse.json();
         }).catch(error => {return error});
     }
 
-    async getPowerRanking(platform, region, epicgames) {
-        return this._request(`https://api.fortnitetracker.com/v1/powerrankings/${platform}/${region}/${encodeURI(epicgames)}`).then(reponse => {
-            if (reponse == 'Not Found') return new Error('The players were not found')
-            else return reponse
-        })
-    }
-
-    async getBRStats(platform, epicgames) {
-        return this._request(`https://api.fortnitetracker.com/v1/profile/${platform}/${encodeURI(epicgames)}`).then(reponse => {
-            if (reponse == 'Not Found') return new Error('The players were not found')
-            else return reponse
+    async getPowerRanking(username, platform, region) {
+        return this._request(`https://api.fortnitetracker.com/v1/powerrankings/${platform}/${region}/${encodeURI(username)}`).then(reponse => {
+            return reponse
         })
     }
 }
